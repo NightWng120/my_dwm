@@ -9,11 +9,12 @@ static const int showbar             = 1;        /* 0 means no bar */
 static const int topbar              = 1;        /* 0 means bottom bar */
 static const char *fonts[]           = { "monospace:size=12" , "fontawesome:size=12"};
 static const char dmenufont[]        = "monospace:size=12";
-static const char normbgcolor[]      = "#222222";
+static const char normbgcolor[]      = "#000000";
 static const char normbordercolor[]  = "#444444";
-static const char normfgcolor[]      = "#bbbbbb";
-static const char selfgcolor[]       = "#eeeeee";
-static const char selbgcolor[]       = "#3932E8";
+static const char normfgcolor[]      = "#FFFFFF";
+static const char selfgcolor[]       = "#FFFFFF";
+//static const char selbgcolor[]       = "#3932E8"; Blue
+static const char selbgcolor[]       = "#FF0000";
 static const char selbordercolor[]   = "#FFFFFF";
 static const char *colors[][3]       = {
 	/*               fg         bg         border   */
@@ -42,9 +43,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "[fr]=",      tile },    /* first entry is default */
+	{ "><>[uwu]",      NULL },    /* no layout function means floating behavior */
+	{ "[ur mom]",      monocle },
 };
 
 /* key definitions */
@@ -68,6 +69,8 @@ static const char *mutecmd[] = {"pactl", "set-sink-mute", "0", "toggle", NULL};
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
+static const char *brupcmd[] = { "brightnessctl", "set", "10%+", NULL };
+static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -101,6 +104,8 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPlay, spawn, {.v = medplaypausecmd } },
 	{ 0, XF86XK_AudioNext, spawn, {.v = mednextcmd } },
 	{ 0, XF86XK_AudioPrev, spawn, {.v = medprevcmd } },
+    	{ 0, XF86XK_MonBrightnessUp,  spawn,          {.v = brupcmd} },
+    	{ 0, XF86XK_MonBrightnessDown, spawn,          {.v = brdowncmd} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
