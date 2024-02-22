@@ -78,6 +78,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_Delete, spawn,          SHCMD("pkill -u nightwng120")},
+	{ MODKEY|ShiftMask,             XK_Delete, spawn,          SHCMD("murder 1")},
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -e 'mv $f ~/Pictures/Screenshots'")},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
