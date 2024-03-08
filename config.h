@@ -1,6 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 // We out here
 /* appearance */
+
+#define SESSION_FILE "/tmp/dwm-session"
+
 #include <X11/XF86keysym.h>
 
 static const unsigned int borderpx   = 3;        /* border pixel of windows */
@@ -77,7 +80,9 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ControlMask,           XK_Delete, spawn,          SHCMD("pkill -u nightwng120")},
+	//{ MODKEY|ControlMask,           XK_Delete, spawn,          SHCMD("pkill -u nightwng120")},
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, 
+	{ MODKEY|ControlMask,           XK_Delete, quit,           {1} }, 
 	{ MODKEY|ShiftMask,             XK_Delete, spawn,          SHCMD("murder 1")},
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -e 'mv $f ~/Pictures/Screenshots'")},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
