@@ -85,7 +85,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 	//{ MODKEY|ControlMask,           XK_Delete, quit,           {1} }, 
 	//{ MODKEY|ShiftMask,             XK_Delete, spawn,          SHCMD("murder 1")},
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -e 'mv $f ~/Pictures/Screenshots'")},
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -e 'mv $f ~/Pictures/Screenshots'")}, //Screenshot keyboard shortcut
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
