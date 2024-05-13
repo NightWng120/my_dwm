@@ -67,12 +67,14 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normbordercolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *bravebrowser[] = {"brave-browser", NULL};
-static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL};
-static const char *volupcmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL};
-static const char *mutecmd[] = {"pactl", "set-sink-mute", "0", "toggle", NULL};
-static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
-static const char *mednextcmd[] = { "playerctl", "next", NULL };
-static const char *medprevcmd[] = { "playerctl", "previous", NULL };
+//"amixer", "-q", "sset", "Master", "3%-", "&&", "kill", "-45", "$(pidof dwmblocks)"
+//static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", "&&", "kill", "-44", "$(pidof dwmblocks)", NULL};
+//static const char *voldowncmd[] = { "amixer", "-q", "sset", "Master", "5%-", "&&", "kill", "-44", "$(pidof dwmblocks)", NULL};
+//static const char *volupcmd[] = { "amixer", "-q", "sset", "Master", "5%+", "&&", "kill", "-44", "$(pidof dwmblocks)", NULL};
+//static const char *mutecmd[] = {"pactl", "set-sink-mute", "0", "toggle", "&&", "kill", "-44", "$(pidof dwmblocks)", NULL};
+//static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
+//static const char *mednextcmd[] = { "playerctl", "next", NULL };
+//static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 static const char *brupcmd[] = { "brightnessctl", "set", "10%+", NULL };
 static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
 
@@ -108,14 +110,14 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_b, spawn,         {.v = bravebrowser } },
-	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
-	{ 0, XF86XK_AudioPlay, spawn, {.v = medplaypausecmd } },
-	{ 0, XF86XK_AudioNext, spawn, {.v = mednextcmd } },
-	{ 0, XF86XK_AudioPrev, spawn, {.v = medprevcmd } },
-    	{ 0, XF86XK_MonBrightnessUp,  spawn,          {.v = brupcmd} },
-    	{ 0, XF86XK_MonBrightnessDown, spawn,          {.v = brdowncmd} },
+	{ 0, XF86XK_AudioMute, spawn, SHCMD("mute") },
+	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer -q sset Master 5%- && kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer -q sset Master 5%+ && kill -44 $(pidof dwmblocks)")},
+	{ 0, XF86XK_AudioPlay, spawn, SHCMD("playerctl play-pause  && kill -45 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioNext, spawn, SHCMD("playerctl next && kill -45 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioPrev, spawn, SHCMD("playerctl previous && kill -45 $(pidof dwmblocks)") },
+   { 0, XF86XK_MonBrightnessUp,  spawn,          {.v = brupcmd} },
+   { 0, XF86XK_MonBrightnessDown, spawn,          {.v = brdowncmd} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
